@@ -4,99 +4,151 @@
   <meta charset="UTF-8" />
   <title>傷口記錄系統</title>
   <style>
-  body {
-  padding: 24px; /* 電腦增加間距 */
-  font-family: Arial, sans-serif;
-  background: #f8f9fa;
-  font-size: 16px; /* 電腦文字大小 */
-}
+    body {
+      padding: 24px;
+      font-family: "Arial", sans-serif;
+      background: #f4f6f8;
+      font-size: 16px;
+      color: #333;
+    }
 
-label {
-  font-weight: bold;
-  margin-top: 16px; /* 電腦版多一點間距 */
-  display: block;
-}
+    .top-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
 
-input, select, textarea {
-  margin-top: 6px;  /* 多點空隙 */
-  padding: 10px;    /* 增加內邊距 */
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 100%;
-  box-sizing: border-box;
-}
+    label {
+      font-weight: bold;
+      margin-top: 16px;
+      display: block;
+    }
+    .json-import {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-button {
-  padding: 12px;
-  border-radius: 6px;
-  border: none;
-  background-color: #a19171;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  white-space: nowrap; /* 不換行，保持橫排 */
-}
+    .json-import label {
+      display: inline-block;
+      margin-top: 0;
+      min-width: 130px;
+      font-weight: bold;
+    }
 
-button:hover {
-  background-color: #a19171;
-}
+    .json-import input {
+      width: auto; 
+      min-width: 400px;
+      margin-top: 0;
+    }
 
-.buttons {
-  display: flex;
-  gap: 12px;      /* 電腦版按鈕間距 */
-  margin: 16px 0;
-  flex-wrap: nowrap; /* 按鈕橫排不換行 */
-  justify-content: flex-end; /* 按鈕靠右 */
-}
+    .other-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto; /* ⬅️ 重點：往右推 */
+      flex-wrap: wrap;
+    }
+    
+    input, select, textarea {
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
 
-.entry img {
-  max-width: 400px; /* 限制圖片寬度 */
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  display: block;
-  margin: 12px 0;
-}
+    button {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #a19171;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
 
-h1, h2 {
-  color: #333;
-  font-size: 24px; /* 電腦字體大一點 */
-}
+    button:hover {
+      background-color: #917f61;
+    }
 
-/* 📱 手機優化 */
-@media (max-width: 600px) {
-  body {
-    padding: 12px;       /* 手機縮小間距 */
-    font-size: 18px;     /* 文字放大 */
-  }
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
 
-  .buttons {
-    flex-direction: column;  /* 按鈕變直排 */
-    align-items: stretch;
-    gap: 8px;               /* 按鈕間距變小 */
-    margin: 12px 0;
-  }
+    .entry {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      margin-bottom: 20px;
+      border-left: 4px solid #a19171;
+    }
 
-  button, .btn {
-    width: 100%;         /* 按鈕撐滿寬度 */
-    margin-top: 0;
-    padding: 14px;
-    font-size: 18px;     /* 按鈕字體放大 */
-  }
+    .entry img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
 
-  label, input, select, textarea {
-    font-size: 18px;    /* 表單文字放大 */
-  }
+    .entry:hover {
+      transform: scale(1.01);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
 
-  h1, h2 {
-    font-size: 20px;    /* 標題字體縮小，適合手機 */
-  }
+    h1, h2 {
+      color: #4a4a4a;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
 
-  .entry img {
-    max-width: 100%;   /* 圖片寬度撐滿容器 */
-    height: auto;
-  }
-}
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #ddd;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+        font-size: 18px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        margin: 12px 0;
+      }
+
+      button {
+        width: 100%;
+        font-size: 18px;
+      }
+
+      input, select, textarea {
+        font-size: 18px;
+      }
+
+      h1, h2 {
+        font-size: 20px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -106,6 +158,11 @@ h1, h2 {
   <input type="file" id="upload" accept="image/*" />
   <p id="previewLabel" style="display:none;">圖片預覽：</p>
   <img id="preview" src="" width="300" style="display:none;" />
+  
+<div hidden>
+  <label>傷口面積（平方公分）：</label>
+  <input type="text" id="area" readonly />
+</div>
 
   <label for="length">傷口長度（公分）：</label>
   <input type="number" id="length" placeholder="例如：5.0" step="0.1" min="0" />
@@ -133,86 +190,104 @@ h1, h2 {
   <input type="number" id="pain" min="0" max="10" step="1" />
 
   <label for="note">備註：</label>
-<textarea id="note" rows="3" placeholder="例如：顏色、形狀、滲液" style="margin-top: 16px;"></textarea>
+  <textarea id="note" rows="3" placeholder="例如：顏色、形狀、滲液" style="margin-top: 16px;"></textarea>
 
-
-  <button id="saveButton">💾 儲存紀錄</button>
+  <div class="buttons">
+    <button id="saveRecord">💾 儲存紀錄</button>
+  </div>
   <hr />
 
   <h2>📋 傷口紀錄結果</h2>
-  <div style="margin-bottom: 12px;">
-  <button onclick="clearAll()">🧹 清空所有紀錄</button>
-  <button onclick="downloadAll()">💾 備份所有紀錄</button>
-  <button onclick="showStorageSize()">📦 查看使用容量</button>
-  <label for="importFile">匯入備份：</label>
-<input type="file" id="importFile" accept="application/json" />
-<button onclick="importBackup()">📤 匯入 JSON 備份</button>
-</div>
+  <p id="recordCount"></p>
+  <div class="top-controls">
+    <div class="json-import">
+      <label for="importFile">匯入 JSON 備份：</label>
+      <input type="file" id="importFile" accept=".json">
+      <button onclick="importBackup()">📤 匯入</button>
+    </div>
+
+    <div class="other-controls">
+      <button onclick="downloadAll()">📥 備份所有紀錄</button>
+      <button onclick="clearAll()">🧹 清空所有紀錄</button>
+      <button onclick="showStorageSize()">📦 查看使用容量</button>
+    </div>
+  </div>
 
   <div id="result"></div>
 
   <script>
-    // 圖片壓縮用的函式
-function resizeImage(file, maxWidth, maxHeight, callback) {
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    const img = new Image();
-    img.onload = function () {
-      const canvas = document.createElement('canvas');
-      let width = img.width;
-      let height = img.height;
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
 
-      if (width > maxWidth) {
-        height = height * (maxWidth / width);
-        width = maxWidth;
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          callback(dataUrl);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function calculateArea() {
+      const length = parseFloat(document.getElementById("length").value);
+      const width = parseFloat(document.getElementById("width").value);
+      const areaInput = document.getElementById("area");
+      if (!isNaN(length) && !isNaN(width)) {
+        areaInput.value = (length * width).toFixed(2);
+      } else {
+        areaInput.value = "";
       }
-      if (height > maxHeight) {
-        width = width * (maxHeight / height);
-        height = maxHeight;
-      }
+    }
 
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
-
-      const dataUrl = canvas.toDataURL('image/jpeg', 0.7); // 壓縮品質 0.7
-      callback(dataUrl);
-    };
-    img.src = event.target.result;
-  };
-  reader.readAsDataURL(file);
-}
+    document.getElementById("length").addEventListener("input", calculateArea);
+    document.getElementById("width").addEventListener("input", calculateArea);
 
     const upload = document.getElementById("upload");
     const preview = document.getElementById("preview");
     const previewLabel = document.getElementById("previewLabel");
-    const saveButton = document.getElementById("saveButton");
+    const saveButton = document.getElementById("saveRecord");
     const resultDiv = document.getElementById("result");
     let currentImageBase64 = "";
 
-  upload.addEventListener("change", function () {
-  const file = upload.files[0];
-  if (file) {
-    resizeImage(file, 300, 300, function (resizedDataUrl) {
-      currentImageBase64 = resizedDataUrl;
-      preview.src = currentImageBase64;
-      preview.style.display = "block";
-      previewLabel.style.display = "block";
+    upload.addEventListener("change", function () {
+      const file = upload.files[0];
+      if (file) {
+        resizeImage(file, 300, 300, function (resizedDataUrl) {
+          currentImageBase64 = resizedDataUrl;
+          preview.src = currentImageBase64;
+          preview.style.display = "block";
+          previewLabel.style.display = "block";
+        });
+      } else {
+        currentImageBase64 = "";
+        preview.src = "";
+        preview.style.display = "none";
+        previewLabel.style.display = "none";
+      }
     });
-  } else {
-    currentImageBase64 = "";
-    preview.src = "";
-    preview.style.display = "none";
-    previewLabel.style.display = "none";
-  }
-});
-
 
     function addRecordToDOM(record, index) {
       const entry = document.createElement("div");
       entry.className = "entry";
-
       entry.innerHTML = `
         🕒 <strong>時間</strong>：${record.time}<br>
         ${record.image ? `<img src="${record.image}" alt="傷口圖片" />` : ""}
@@ -223,6 +298,7 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
         🔹 <strong>長度</strong>：${record.length} 公分，
         <strong>寬度</strong>：${record.width} 公分，
         <strong>深度</strong>：${record.depth} 公分，
+        <strong>面積</strong>：${record.area} 平方公分，
         <strong>類型</strong>：${record.type}<br>
         🩹 <strong>換藥方式</strong>：${record.dressing}<br>
         😖 <strong>疼痛等級</strong>：${record.pain} / 10<br>
@@ -235,6 +311,7 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
     function loadRecords() {
       resultDiv.innerHTML = "";
       const records = JSON.parse(localStorage.getItem("woundRecords") || "[]");
+      document.getElementById("recordCount").innerText = `目前共有 ${records.length} 筆紀錄`;
       records.forEach((record, index) => addRecordToDOM(record, index));
     }
 
@@ -246,6 +323,7 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
       const dressing = document.getElementById("dressing").value.trim();
       const pain = document.getElementById("pain").value.trim();
       const note = document.getElementById("note").value.trim();
+      const area = document.getElementById("area").value.trim();
 
       if (!length || !width || !depth || !type) {
         alert("請完整填寫傷口長、寬、深度與類型！");
@@ -259,21 +337,20 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
         width,
         depth,
         type,
+        area,
         note,
         dressing,
         pain,
       };
 
       const records = JSON.parse(localStorage.getItem("woundRecords") || "[]");
-  records.unshift(record);
-  if (records.length >= 10) {
-    records.pop(); // 最多保留 10 筆
-  }
-  localStorage.setItem("woundRecords", JSON.stringify(records));
+      records.unshift(record);
+      if (records.length >= 10) {
+        records.pop();
+      }
+      localStorage.setItem("woundRecords", JSON.stringify(records));
+      loadRecords();
 
-  loadRecords();
-
-      // 清空欄位與預覽
       document.getElementById("length").value = "";
       document.getElementById("width").value = "";
       document.getElementById("depth").value = "";
@@ -281,6 +358,7 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
       document.getElementById("note").value = "";
       document.getElementById("dressing").value = "";
       document.getElementById("pain").value = "";
+      document.getElementById("area").value = ""; 
       upload.value = "";
       currentImageBase64 = "";
       preview.src = "";
@@ -320,57 +398,61 @@ function resizeImage(file, maxWidth, maxHeight, callback) {
     window.downloadImage = downloadImage;
 
     loadRecords();
+
     function clearAll() {
-  if (confirm("確定要清空所有紀錄嗎？")) {
-    localStorage.removeItem("woundRecords");
-    loadRecords();
-  }
-}
+      if (confirm("確定要清空所有紀錄嗎？")) {
+        localStorage.removeItem("woundRecords");
+        loadRecords();
+      }
+    }
 
-function downloadAll() {
-  const records = localStorage.getItem("woundRecords") || "[]";
-  const blob = new Blob([records], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "wound_records_backup.json";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
+    function downloadAll() {
+      const records = localStorage.getItem("woundRecords") || "[]";
+      const blob = new Blob([records], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "wound_records_backup.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
 
-function showStorageSize() {
-  const all = JSON.stringify(localStorage);
-  const kb = (new Blob([all]).size / 1024).toFixed(2);
-  alert("目前 localStorage 使用容量約為 " + kb + " KB");
-}
+    function showStorageSize() {
+      const all = JSON.stringify(localStorage);
+      const kb = (new Blob([all]).size / 1024).toFixed(2);
+      alert("目前 localStorage 使用容量約為 " + kb + " KB");
+    }
 
-function importBackup() {
-  const fileInput = document.getElementById("importFile");
-  const file = fileInput.files[0];
-  if (!file) {
-    alert("請先選擇要匯入的 JSON 檔案！");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    try {
-      const importedData = JSON.parse(event.target.result);
-      if (!Array.isArray(importedData)) {
-        throw new Error("格式錯誤");
+    function importBackup() {
+      const fileInput = document.getElementById("importFile");
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("請先選擇要匯入的 JSON 檔案！");
+        return;
       }
 
-      if (!confirm("匯入後會覆蓋原有紀錄，確定嗎？")) return;
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        try {
+          const importedData = JSON.parse(event.target.result);
+          if (!Array.isArray(importedData)) throw new Error("格式錯誤");
 
-      localStorage.setItem("woundRecords", JSON.stringify(importedData));
-      loadRecords();
-      alert("✅ 匯入成功！");
-    } catch (err) {
-      alert("❌ 匯入失敗，請確認檔案格式正確！");
+                   if (!importedData.every(item =>
+            typeof item.time === "string" &&
+            typeof item.length === "string" &&
+            typeof item.width === "string" &&
+            typeof item.depth === "string"
+          )) throw new Error("資料格式錯誤");
+
+          localStorage.setItem("woundRecords", JSON.stringify(importedData));
+          loadRecords();
+          alert("匯入成功！");
+        } catch (e) {
+          alert("匯入失敗，請確認檔案格式正確！");
+        }
+      };
+      reader.readAsText(file);
     }
-  };
-  reader.readAsText(file);
-}
 
   </script>
 </body>
