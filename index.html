@@ -149,6 +149,21 @@
       }
     }
 
+    /* 手機版樣式：最大寬度 768px 時套用 */
+    @media (max-width: 768px) {
+      .export-buttons {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .export-buttons button {
+        width: auto; /* 可加這行讓按鈕寬度不會撐滿 */
+      }
+    }
   </style>
 </head>
 <body>
